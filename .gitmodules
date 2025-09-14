@@ -1,0 +1,6 @@
+[submodule "backend"]
+	path = backend
+	url = https://github.com/imtavin/strawberry-backend-python.git
+[submodule "frontend"]
+	path = frontend
+	url = https://github.com/imtavin/strawberry-frontend-python.git
