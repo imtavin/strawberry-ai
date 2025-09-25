@@ -1,27 +1,41 @@
 {
   "camera": {
-    "device_index": 0,                
-    "preview_size": [640, 480],       
-    "resolution": [2592, 1944],       
-    "iso": 200,                       
-    "exposure_mode": "auto",          
-    "meter_mode": "matrix",           
-    "video_stabilization": false,     
-    "awb_mode": "sunlight",           
-    "hflip": false,                   
-    "vflip": false,                   
-    "rotation": 0,		      
-    "jpeg_quality": 80,		      
-    "target_fps": 10                   
+    "type": "opencv",             
+    "device_index": 0,
+    "preview_size": [640, 480],
+    "resolution": [2592, 1944],
+    "iso": 200,
+    "exposure_mode": "auto",
+    "meter_mode": "matrix",
+    "video_stabilization": false,
+    "awb_mode": "sunlight",
+    "hflip": false,
+    "vflip": false,
+    "rotation": 0,
+    "jpeg_quality": 80,
+    "target_fps": 10
   },
-  "server": {
+
+  "server": {                     
     "enabled": true,
     "host": "127.0.0.1",
     "port": 5000
   },
-  "udp": {
-    "host": "0.0.0.0",  
-    "port": 5005,
+
+  "udp": {                        
+    "listen_port": 5005,
     "max_packet_size": 4096
+  },
+
+  "frame_tcp": {                  
+    "enabled": true,
+    "host": "127.0.0.1",          
+    "port": 5050
+  },
+
+  "video": {                       
+    "transport": "tcp",           
+    "tcp_host": "127.0.0.1",
+    "tcp_port": 5050
   }
 }
