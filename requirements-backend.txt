@@ -1,0 +1,28 @@
+# --- Web server ---
+Flask==3.1.0
+flask-cors==5.0.1
+click==8.1.8
+blinker==1.9.0
+itsdangerous==2.2.0
+Jinja2==3.1.6
+MarkupSafe==3.0.2
+Werkzeug==3.1.3
+colorama==0.4.6
+packaging==25.0
+
+# --- Logging e sistema ---
+psutil>=5.9.8,<6.0
+
+# --- Processamento de imagem ---
+pillow>=10.4,<11.0
+opencv-python>=4.8,<4.11 ; sys_platform == "win32"
+opencv-python-headless>=4.8,<4.11 ; sys_platform != "win32"
+
+# --- NumPy fix para TFLite ---
+numpy>=1.26.4,<2 ; python_version < "3.12"
+# (Em Windows com Python 3.12/3.13, esta linha força falha para indicar usar Py 3.10/3.11)
+numpy==0.0.0 ; (sys_platform == "win32") and (python_version >= "3.12")
+
+# --- Inferência ---
+tflite-runtime>=2.14,<2.16 ; sys_platform != "win32"
+tensorflow==2.15.0 ; (sys_platform == "win32") and (python_version < "3.12")

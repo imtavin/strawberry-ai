@@ -88,18 +88,54 @@ sudo systemctl stop strawberry-frontend
 
 ## 🛠️ Desenvolvimento
 
-Use **Python 3.13** ou superior.
+Para o desenvolvimento serão necessárias duas versões do Python
+- 3.10 (Backend)
+- 3.13 (Frontend)
+
+### Instalar Python no Windows
+```shell
+winget install --id Python.Python.3.10 -e
+
+winget install --id Python.Python.3.13 -e
+```
+
+### Instalar Python no Linux
+```bash
+sudo apt install python3.10 python3.13 python3.10-venv python3.13-venv
+```
 
 Crie um ambiente virtual para instalar dependências:
 
+### Backend (Python 3.10)
 ```bash
-python -m venv venv
-# Linux / macOS
-source venv/bin/activate
-# Windows
-venv\Scripts\activate
+python3.10 -m venv venv-backend
 
-pip install -r requirements.txt
+# Windows
+.\venv-backend\Scripts\activate
+
+#Linux
+source venv-backend/bin/activate
+
+pip install --upgrade pip
+pip install -r requirements-backend.txt
+
+python backend\main.py
+```
+
+### Frontend (Python 3.13)
+```bash
+python3.13 -m venv venv-frontend
+
+# Windows
+.\venv-backend\Scripts\activate
+
+#Linux
+source venv-backend/bin/activate
+
+pip install --upgrade pip
+pip install -r requirements-frontend.txt
+
+python frontend\main.py
 ```
 
 Para atualizar submódulos:
