@@ -41,12 +41,16 @@
     "tcp_port": 5050
   },
   "ml": {
-    "model_path": "morganaAI/MorganaAI.tflite",
+    "model_path": "backend/morganaAI/MorganaAI.tflite",
     "labels": [
       "saudavel",
-      "doenca_x",
-      "doenca_y"
-    ],
+      "acaro",
+      "trips",
+      "mosca_branca",
+      "mancha_foliar",
+      "oidio",
+      "mofo_cinzento"],
+    
     "input_norm": "auto"
   },
   "message": "Configura\u00e7\u00f5es salvas"
