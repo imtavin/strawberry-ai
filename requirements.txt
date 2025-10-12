@@ -1,0 +1,47 @@
+# === Backend - Python 3.10 ===
+
+# Web server
+Flask==3.1.0
+flask-cors==5.0.1
+click==8.1.8
+blinker==1.9.0
+itsdangerous==2.2.0
+Jinja2==3.1.6
+MarkupSafe==3.0.2
+Werkzeug==3.1.3
+
+# Logging e sistema
+psutil==5.9.8
+
+# Processamento de imagem
+Pillow==10.4.0
+opencv-python-headless==4.10.0.84
+
+# NumPy estável
+numpy==1.26.4
+
+# Inferência - AGORA FUNCIONA NO WINDOWS TAMBÉM!
+tflite-runtime==2.15.0
+
+# Utilitários
+colorama==0.4.6
+packaging==25.0
+netifaces==0.11.0
+
+# === Frontend - Python 3.10 ===
+
+# UI
+customtkinter==5.2.2
+darkdetect==0.8.0
+
+# Processamento de imagem
+Pillow==10.4.0
+opencv-python==4.10.0.84
+numpy==1.26.4
+
+# Utilitários
+psutil==5.9.8
+requests==2.31.0
+colorama==0.4.6
+packaging==25.0
+netifaces==0.11.0
