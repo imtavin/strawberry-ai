@@ -23,13 +23,28 @@
     "model_path": "backend/morganaAI/MorganaAI.tflite",
     "labels": [
       "saudavel",
-      "acaro",
-      "trips",
-      "mosca_branca",
-      "mancha_foliar",
-      "oidio",
-      "mofo_cinzento"
+      "anthracnose_fruit_rot",
+      "powdery_mildew_leaf",
+      "gray_mold",
+      "blossom_blight",
+      "leaf_spot",
+      "angular_leafspot",
+      "powdery_mildew_fruit"
+
     ],
+    "translations": {
+      "saudavel": "Saudável",
+      "anthracnose_fruit_rot": "Antracnose no Fruto",
+      "powdery_mildew_leaf": "Oídio (Folha)",
+      "gray_mold": "Mofo Cinzento",
+      "blossom_blight": "Queima das Flores",
+      "leaf_spot": "Mancha Foliar",
+      "angular_leafspot": "Mancha Angular",
+      "powdery_mildew_fruit": "Oídio (Fruto)"
+    },
+
+    "default_label": "não identificado",
+    "confidence_threshold": 0.6,
     "input_norm": "auto"
   },
   "message": "Configura\u00e7\u00f5es salvas"
