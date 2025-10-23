@@ -1,0 +1,15 @@
+[Unit]
+Description=Strawberry AI Backend Service
+After=network.target
+
+[Service]
+Type=simple
+User=pi
+WorkingDirectory=/opt/strawberry-ai/backend
+ExecStart=/opt/strawberry-ai/backend/venv/bin/python main.py
+Restart=always
+RestartSec=5
+Environment=PYTHONUNBUFFERED=1
+
+[Install]
+WantedBy=multi-user.target

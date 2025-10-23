@@ -1,6 +1,9 @@
 {
   "camera": {
-    "target_fps": 30
+    "type": "picamera",
+    "preview_size": [640, 480],
+    "target_fps": 15,
+    "jpeg_quality": 80
   },
   "server": {
     "enabled": true,
@@ -20,7 +23,7 @@
     "transport": "tcp"
   },
   "ml": {
-    "model_path": "backend/morganaAI/MorganaAI.tflite",
+    "model_path": "morganaAI/MorganaAI.tflite",
     "labels": [
       "saudavel",
       "anthracnose_fruit_rot",
