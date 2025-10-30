@@ -626,6 +626,17 @@ export XAUTHORITY=/home/raspi/.Xauthority
 printf "\033[2J\033[H" > /dev/tty1
 printf "\033[?25l" > /dev/tty1
 
+# AGUARDAR BACKEND ESTAR PRONTO ANTES DE INICIAR
+echo "⏳ Aguardando backend..." > /dev/tty1
+/opt/strawberry-ai/backend/venv/bin/python /opt/strawberry-ai/backend/test/test_healthcheck.py
+
+if [ $? -ne 0 ]; then
+    echo "❌ Backend não iniciou corretamente" > /dev/tty1
+    exit 1
+fi
+
+echo "✅ Backend pronto, iniciando interface..." > /dev/tty1
+
 # Parar X anterior e limpar
 sudo pkill Xorg 2>/dev/null || true
 sleep 1
@@ -703,14 +714,17 @@ EOF
 sudo tee /etc/systemd/system/strawberry-kiosk.service > /dev/null << EOF
 [Unit]
 Description=Strawberry AI Kiosk Mode
-After=strawberry-backend.service graphical.target
+After=strawberry-backend.service
 Wants=strawberry-backend.service
+# Adicione wait para garantir que o backend está pronto
+After=network.target
 
 [Service]
 Type=simple
 User=raspi
 Group=raspi
 WorkingDirectory=/opt/strawberry-ai/scripts
+ExecStartPre=/bin/sleep 10
 ExecStart=/bin/bash /opt/strawberry-ai/scripts/start-kiosk.sh
 Restart=always
 RestartSec=10
