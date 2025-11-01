@@ -635,19 +635,21 @@ if [ $? -ne 0 ]; then
     exit 1
 fi
 
-echo "✅ Backend pronto, iniciando interface..." > /dev/tty1
+echo "✅ Backend pronto!" > /dev/tty1
+
+128 | sudo tee /sys/class/backlight/10-0045/brightness
 
 # Parar X anterior e limpar
 sudo pkill Xorg 2>/dev/null || true
-sleep 1
+sleep 2
 sudo rm -f /tmp/.X0-lock /tmp/.X11-unix/X0
 
 # Iniciar X Server
-echo "🚀 Iniciando interface..." > /dev/tty1
+echo "🚀 Iniciando interface gráfica..." > /dev/tty1
 sudo X :0 -nocursor -s 0 -dpms -nolisten tcp vt1 &
 
-# Aguardar X
-echo "⏳ Preparando sistema..." > /dev/tty1
+# Aguardar X inicializar
+echo "⏳ Preparando display..." > /dev/tty1
 MAX_X_WAIT=30
 X_WAIT_COUNT=0
 
@@ -715,8 +717,8 @@ sudo tee /etc/systemd/system/strawberry-kiosk.service > /dev/null << EOF
 [Unit]
 Description=Strawberry AI Kiosk Mode
 After=strawberry-backend.service
-Wants=strawberry-backend.service
-# Adicione wait para garantir que o backend está pronto
+Requires=strawberry-backend.service
+Wants=network.target
 After=network.target
 
 [Service]
@@ -724,7 +726,7 @@ Type=simple
 User=raspi
 Group=raspi
 WorkingDirectory=/opt/strawberry-ai/scripts
-ExecStartPre=/bin/sleep 10
+ExecStartPre=/bin/sleep 15
 ExecStart=/bin/bash /opt/strawberry-ai/scripts/start-kiosk.sh
 Restart=always
 RestartSec=10
