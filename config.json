@@ -1,9 +1,18 @@
 {
   "camera": {
     "type": "picamera",
+    "device_index": 0,
     "preview_size": [640, 480],
-    "target_fps": 15,
-    "jpeg_quality": 80
+    "target_fps": 30,
+    "jpeg_quality": 80,
+    "rotation": 0,
+    "brightness": 0.0,
+    "contrast": 1.0,
+    "saturation": 1.0,
+    "sharpness": 1.0,
+    "exposure_mode": "auto",
+    "awb_mode": "auto",
+    "meter_mode": "average"
   },
   "server": {
     "enabled": true,
