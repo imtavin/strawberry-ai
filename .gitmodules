@@ -7,3 +7,6 @@
 [submodule "docs"]
 	path = docs
 	url = https://github.com/ArtPires/TCC-Documentos.git
+[submodule "ia"]
+	path = ia
+	url = https://github.com/Amandarlima/Morgana-AI.git
