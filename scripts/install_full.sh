@@ -705,6 +705,9 @@ ExecStart=/opt/strawberry-ai/backend/venv/bin/python main.py
 Restart=always
 RestartSec=5
 Environment=PYTHONUNBUFFERED=1
+Environment=PYTHONIOENCODING=utf-8
+Environment=LANG=en_US.UTF-8
+Environment=LC_ALL=en_US.UTF-8
 StandardOutput=append:/opt/strawberry-ai/logs/backend.log
 StandardError=append:/opt/strawberry-ai/logs/backend-error.log
 
@@ -731,6 +734,9 @@ ExecStart=/bin/bash /opt/strawberry-ai/scripts/start-kiosk.sh
 Restart=always
 RestartSec=10
 TTYPath=/dev/tty1
+Environment=PYTHONIOENCODING=utf-8
+Environment=LANG=en_US.UTF-8
+Environment=LC_ALL=en_US.UTF-8
 StandardOutput=append:/opt/strawberry-ai/logs/kiosk.log
 StandardError=append:/opt/strawberry-ai/logs/kiosk-error.log
 
@@ -953,7 +959,7 @@ echo ""
 echo "🎯 CORREÇÕES APLICADAS:"
 echo "======================"
 echo "🔧 FIX 1: CustomTkinter - Instalação garantida com Tkinter do sistema"
-echo "🔧 FIX 2: Picamera2 - Link simbólico do sistema para venv do backend"  
+echo "🔧 FIX 2: picamera - Link simbólico do sistema para venv do backend"  
 echo "🔧 FIX 3: Ordem de venv corrigida no x-session.sh"
 echo "🔧 FIX 4: Verificação completa de ambientes virtuais"
 echo ""
