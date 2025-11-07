@@ -1,6 +1,6 @@
 #!/bin/bash
 # ===============================================================
-# 🚀 Strawberry AI - Instalação Final (CORRIGIDO - CustomTkinter + Picamera2 Fix)
+# Strawberry AI - Instalação Final (CORRIGIDO - CustomTkinter + Picamera2 Fix)
 # ===============================================================
 
 # set -e  # Para em caso de erro crítico
@@ -151,7 +151,7 @@ if [ -f "$SOURCE_DIR/config.json" ]; then
     sudo cp "$SOURCE_DIR/config.json" "$APP_DIR/" 2>/dev/null || true
     sudo cp "$SOURCE_DIR/config.json" "$BACKEND_DIR/" 2>/dev/null || true
     sudo cp "$SOURCE_DIR/config.json" "$FRONTEND_DIR/" 2>/dev/null || true
-    log "✅ config.json copiado para backend, frontend e diretório raiz"
+    log "    config.json copiado para backend, frontend e diretório raiz"
 else
     warn "config.json não encontrado no diretório fonte"
 fi
@@ -212,6 +212,33 @@ if [ -f "/boot/firmware/config.txt" ]; then
 else
     warn "Arquivo /boot/firmware/config.txt não encontrado"
 fi
+
+# -------------------------------
+# 3.1 CONFIGURAR PERMISSÕES DE SCRIPTS E LOGS
+# -------------------------------
+log "3.1 Ajustando permissões e execução dos scripts..."
+
+# Garantir permissão de execução em todos os scripts
+sudo chmod +x /opt/strawberry-ai/scripts/*.sh 2>/dev/null || true
+
+# Garantir que o usuário raspi seja o dono
+sudo chown raspi:raspi /opt/strawberry-ai/scripts/*.sh
+
+sudo chown raspi:raspi /home/raspi/strawberry-ai/scripts/metrics-collector.sh
+sudo chmod +x /home/raspi/strawberry-ai/scripts/metrics-collector.sh
+
+# Garantir diretório de logs com permissão total ao raspi
+sudo mkdir -p /opt/strawberry-ai/logs
+sudo chown -R raspi:raspi /opt/strawberry-ai/logs
+sudo chmod -R 775 /opt/strawberry-ai/logs
+
+# Mensagem de verificação
+if [ -x /opt/strawberry-ai/scripts/metrics-collector.sh ]; then
+    log "✅ Scripts de métricas configurados corretamente"
+else
+    warn "⚠️ Script metrics-collector.sh ainda sem permissão de execução"
+fi
+
 
 # -------------------------------
 # 4. INSTALAR DEPENDÊNCIAS DO SISTEMA (CRÍTICO)
@@ -638,6 +665,9 @@ fi
 echo "✅ Backend pronto!" > /dev/tty1
 
 128 | sudo tee /sys/class/backlight/10-0045/brightness
+
+echo "Iniciando script de captura de metrica" > /dev/tty1
+sudo bash /home/raspi/strawberry-ai/scripts/start-metrics.sh
 
 # Parar X anterior e limpar
 sudo pkill Xorg 2>/dev/null || true
