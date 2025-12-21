@@ -1,18 +1,18 @@
 {
   "camera": {
-    "type": "picamera",
-    "device_index": 0,
-    "preview_size": [640, 480],
-    "target_fps": 30,
-    "jpeg_quality": 80,
-    "rotation": 0,
-    "brightness": 0.0,
-    "contrast": 1.0,
-    "saturation": 1.0,
-    "sharpness": 1.0,
-    "exposure_mode": "auto",
-    "awb_mode": "auto",
-    "meter_mode": "average"
+    "device_index": 0,                
+    "preview_size": [640, 480],       
+    "resolution": [2592, 1944],       
+    "iso": 200,                       
+    "exposure_mode": "auto",          
+    "meter_mode": "matrix",           
+    "video_stabilization": false,     
+    "awb_mode": "sunlight",           
+    "hflip": false,                   
+    "vflip": false,                   
+    "rotation": 0,		      
+    "jpeg_quality": 80,		      
+    "target_fps": 10                   
   },
   "server": {
     "enabled": true,
@@ -20,44 +20,8 @@
     "port": 5000
   },
   "udp": {
-    "listen_port": 5005,
+    "host": "0.0.0.0",  
+    "port": 5005,
     "max_packet_size": 4096
-  },
-  "frame_tcp": {
-    "enabled": true,
-    "host": "127.0.0.1",
-    "port": 5050
-  },
-  "video": {
-    "transport": "tcp"
-  },
-  "ml": {
-    "model_path": "morganaAI/MorganaAI.tflite",
-    "labels": [
-      "saudavel",
-      "anthracnose_fruit_rot",
-      "powdery_mildew_leaf",
-      "gray_mold",
-      "blossom_blight",
-      "leaf_spot",
-      "angular_leafspot",
-      "powdery_mildew_fruit"
-
-    ],
-    "translations": {
-      "saudavel": "Saudável",
-      "anthracnose_fruit_rot": "Antracnose no Fruto",
-      "powdery_mildew_leaf": "Oídio (Folha)",
-      "gray_mold": "Mofo Cinzento",
-      "blossom_blight": "Queima das Flores",
-      "leaf_spot": "Mancha Foliar",
-      "angular_leafspot": "Mancha Angular",
-      "powdery_mildew_fruit": "Oídio (Fruto)"
-    },
-
-    "default_label": "não identificado",
-    "confidence_threshold": 0.6,
-    "input_norm": "auto"
-  },
-  "message": "Configura\u00e7\u00f5es salvas"
+  }
 }
